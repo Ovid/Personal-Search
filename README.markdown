@@ -21,9 +21,10 @@ creating custom search bookmarks.
 # HTML5
 
 Long-term I intend to take advantage of localStorage, so I have issues with
-using HTML5 now, though I do try to degrage gracefully.
+using HTML5 now, though I do try to degrade gracefully.
 
 # ALPHA
+
 This is only a proof of concept. In fact, it's fair to say that this code
 sucks.
 
