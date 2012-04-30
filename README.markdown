@@ -14,7 +14,9 @@ Point your browser at search.html and go.
 
 This is a way of helping me learn HTML5, CSS and Javascript better. It's just
 a shorthand for several common searches I like to do, without having to go to
-the pages and constantly clicking "advanced search".
+the pages and constantly clicking "advanced search". Further, it should work
+regardless of where I am and which browser I am using. Long-term plans involve
+creating custom search bookmarks.
 
 # HTML5
 
