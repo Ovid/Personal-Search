@@ -74,6 +74,10 @@
           <td>Personal blog search</td>
           <td><tt>!p economics</tt></td>
         </tr>
+        <tr>
+          <td>Wolfram Alpha</td>
+          <td><tt>!w what is the sound of one hand clapping</tt></td>
+        </tr>
       </tbody>
     </table>
     <p>Searches not matching desired prefix fall back to duckduckgo.com</p>
@@ -90,7 +94,8 @@
         var redirects = {
             f : "http://www.flickr.com/search/?q={0}&l=comm&ss=2&ct=6&mt=all&w=all&adv=1",
             g : "http://www.google.com.pk/search?btnG=1&pws=0&q={0}",
-            p : "https://www.google.com/search?hl=en&q=site%3Apublius-ovidius.livejournal.com+{0}"
+            p : "https://www.google.com/search?hl=en&q=site%3Apublius-ovidius.livejournal.com+{0}",
+            w : "http://www.wolframalpha.com/input/?i={0}"
         };
         $('#searchbox').submit(function() {
             // $("#searchbox").attr('action', 'http://www.google.com');
