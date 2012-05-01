@@ -38,31 +38,32 @@ String.prototype.redirectFormat = function() {
 };
 
 var personalSearch = function(searchId) {
-        var redirects = {
-            c : "http://search.cpan.org/search?query={0}&mode=all",
-            f : "http://www.flickr.com/search/?q={0}&l=comm&ss=2&ct=6&mt=all&w=all&adv=1",
-            g : "http://www.google.com/search?btnG=1&pws=0&q={0}",
-            m : "https://metacpan.org/search?q={0}",
-            n : "http://www.google.com/search?btnG=1&tbm=nws&pws=0&q={0}",
-            p : "https://www.google.com/search?hl=en&q=site%3Apublius-ovidius.livejournal.com+{0}",
-            w : "http://www.wolframalpha.com/input/?i={0}"
-        };
+    var redirects = {
+        c : "http://search.cpan.org/search?query={0}&mode=all",
+        f : "http://www.flickr.com/search/?q={0}&l=comm&ss=2&ct=6&mt=all&w=all&adv=1",
+        g : "http://www.google.com/search?btnG=1&pws=0&q={0}",
+        m : "https://metacpan.org/search?q={0}",
+        n : "http://www.google.com/search?btnG=1&tbm=nws&pws=0&q={0}",
+        p : "https://www.google.com/search?hl=en&q=site%3Apublius-ovidius.livejournal.com+{0}",
+        w : "http://www.wolframalpha.com/input/?i={0}",
+        y : "http://www.youtube.com/results?search_query={0}"
+    };
 
-        $(searchId).submit(function() {
-            // $("#searchbox").attr('action', 'http://www.google.com');
-            var search = $('#search').val();
-            var reSearch = /^\s*!(\S+)\s+(.*)/;
-            var matchSearch = reSearch.exec(search);
-            if (matchSearch) {
-                if ( redirect = redirects[matchSearch[1]] ) {
-                    setTimeout(function() {
-                        window.location = redirect.redirectFormat(encodeURIComponent(matchSearch[2]));
-                    }, 1000 );
-                    return false;
-                }
+    $(searchId).submit(function() {
+        // $("#searchbox").attr('action', 'http://www.google.com');
+        var search = $('#search').val();
+        var reSearch = /^\s*!(\S+)\s+(.*)/;
+        var matchSearch = reSearch.exec(search);
+        if (matchSearch) {
+            if ( redirect = redirects[matchSearch[1]] ) {
+                setTimeout(function() {
+                    window.location = redirect.redirectFormat(encodeURIComponent(matchSearch[2]));
+                }, 1 );
+                return false;
             }
-            else {
-                return true;
-            }
-        });
+        }
+        else {
+            return true;
+        }
+    });
 };
