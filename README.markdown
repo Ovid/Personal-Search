@@ -2,10 +2,6 @@
 
 Personal-Search - Search what you really want to search
 
-# VERSION
-
-Version 0.01
-
 # SYNOPSIS
 
 Point your browser at search.html and go.
@@ -38,11 +34,10 @@ Curtis "Ovid" Poe, `<ovid at cpan.org>`
 
 # LICENSE AND COPYRIGHT
 
-Copyright 2011 Curtis "Ovid" Poe.
+Copyright 2012 Curtis "Ovid" Poe.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either: the GNU General Public License as published
 by the Free Software Foundation; or the Artistic License.
 
 See http://dev.perl.org/licenses/ for more information.
-
