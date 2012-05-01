@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/table.css" />
     <script src="js/jquery-latest.js"></script>
     <script src="js/modernizr-latest.js"></script>
-    <script src="js/search.js"></script>
+    <script src="js/personalSearch.js"></script>
   </head>
   <body>
     <noscript>
@@ -53,39 +53,6 @@
       </tbody>
     </table>
     <p>Searches not matching desired prefix fall back to <a href="http://www.duckduckgo.com/">duckduckgo.com</a></p>
-    <script>
-        String.prototype.redirectFormat = function() {
-          var args = arguments;
-          return this.replace(/{(\d+)}/g, function(match, number) { 
-            return typeof args[number] != 'undefined'
-              ? args[number]
-              : match
-            ;
-          });
-        };
-        var redirects = {
-            f : "http://www.flickr.com/search/?q={0}&l=comm&ss=2&ct=6&mt=all&w=all&adv=1",
-            g : "http://www.google.com.pk/search?btnG=1&pws=0&q={0}",
-            p : "https://www.google.com/search?hl=en&q=site%3Apublius-ovidius.livejournal.com+{0}",
-            w : "http://www.wolframalpha.com/input/?i={0}"
-        };
-        $('#searchbox').submit(function() {
-            // $("#searchbox").attr('action', 'http://www.google.com');
-            var search = $('#search').val();
-            var reSearch = /^\s*!(\S+)\s+(.*)/;
-            var matchSearch = reSearch.exec(search);
-            if (matchSearch) {
-                if ( redirect = redirects[matchSearch[1]] ) {
-                    setTimeout(function() {
-                        window.location = redirect.redirectFormat(encodeURIComponent(matchSearch[2]));
-                    }, 1000 );
-                    return false;
-                }
-            }
-            else {
-                return true;
-            }
-        });
-    </script>
+    <script>personalSearch('#searchbox');</script>
   </body>
 </html>
