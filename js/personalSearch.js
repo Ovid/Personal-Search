@@ -41,8 +41,9 @@ var personalSearch = function(searchId) {
         var redirects = {
             c : "http://search.cpan.org/search?query={0}&mode=all",
             f : "http://www.flickr.com/search/?q={0}&l=comm&ss=2&ct=6&mt=all&w=all&adv=1",
-            g : "http://www.google.com.pk/search?btnG=1&pws=0&q={0}",
+            g : "http://www.google.com/search?btnG=1&pws=0&q={0}",
             m : "https://metacpan.org/search?q={0}",
+            n : "http://www.google.com/search?btnG=1&tbm=nws&pws=0&q={0}",
             p : "https://www.google.com/search?hl=en&q=site%3Apublius-ovidius.livejournal.com+{0}",
             w : "http://www.wolframalpha.com/input/?i={0}"
         };
