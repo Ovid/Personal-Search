@@ -10,6 +10,10 @@ Version 0.01
 
 Point your browser at search.html and go.
 
+# PREVIEW
+
+![personal search preview](http://farm8.staticflickr.com/7202/7131102101_f9c0480e85_d.jpg)
+
 # DESCRIPTION
 
 This is a way of helping me learn HTML5, CSS and Javascript better. It's just
