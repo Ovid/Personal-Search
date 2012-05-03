@@ -37,7 +37,7 @@ String.prototype.redirectFormat = function() {
     });
 };
 
-var personalSearch = function(searchId) {
+var personalSearch = function(searchId,searchBoxId) {
     var redirects = {
         cpan : {
             url  : "http://search.cpan.org/search?query={0}&mode=all",
@@ -74,8 +74,7 @@ var personalSearch = function(searchId) {
     };
 
     $(searchId).submit(function() {
-        // $("#searchbox").attr('action', 'http://www.google.com');
-        var search = $('#search').val();
+        var search = $(searchBoxId).val();
         var reSearch = /^\s*!(\S+)\s+(.*)/;
         var matchSearch = reSearch.exec(search);
         if (matchSearch) {
@@ -90,12 +89,10 @@ var personalSearch = function(searchId) {
             return true;
         }
     });
-    /* http://stackoverflow.com/questions/1837555/ajax-autocomplete-or-autosuggest-with-tab-completion-autofill-similar-to-shell
-     * */
     var keys = [];
     for (var key in redirects) keys.push('!' + key);
     keys.sort();
-    $('#search').autocomplete({
+    $(searchBoxId).autocomplete({
         source: keys,
         delay: 0,
         selectFirst: true,
@@ -106,7 +103,7 @@ var personalSearch = function(searchId) {
             if (event.keyCode == TABKEY) {
                 event.preventDefault();
                 this.value = this.value + " ";
-                $('#search').focus();
+                $(searchBoxId).focus();
             }
 
             return false;
