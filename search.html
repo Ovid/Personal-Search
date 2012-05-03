@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- http://www.red-team-design.com/how-to-create-a-cool-and-usable-css3-search-box -->
   <head>
     <title>Custom searches, just the way I like 'em.</title>
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="css/search.css" />
     <link rel="stylesheet" type="text/css" href="css/table.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.20.custom.css" />
     <script src="js/jquery-latest.js"></script>
     <script src="js/modernizr-latest.js"></script>
+    <script src="js/jquery-ui-1.8.20.custom.min.js"></script>
     <script src="js/personalSearch.js"></script>
   </head>
   <body>
-    <noscript>
     <p>This is an experiment with HTML5 and JavaScript. If you can't/won't
     support either, it won't be very interesting to you.</p>
-    </noscript>
-    <form id="searchbox" method="GET" action="http://duckduckgo.com/">
-      <input
-        id="search"
-        type="text"
-        name="q"
-        autofocus="1"
-        placeholder="Enter search text"
-        autocomplete="on">
-      <input id="submit" type="submit" value="Search">
-    </form>
+
+    <p>If the first character you type in the search box is a bang
+    (<tt>!</tt>), then an autocomplete dropdown with different searches wil
+    show up as you start typing. Hiting <tt>tab</tt> will complete the search
+    type and then you just type the rest of your search and hit
+    <tt>enter</tt>.</p>
+
+    <div class="ui-widget">
+      <form id="searchbox" method="GET" action="http://duckduckgo.com/">
+        <input
+          id="search"
+          type="text"
+          name="q"
+          autofocus="1"
+          placeholder="Enter search text"
+          autocomplete="off">
+        <input id="submit" type="submit" value="Search">
+        <script>personalSearch('#searchbox');</script>
+      </form>
+    </div>
     <p>Try these searches:</p>
     <table class="bordered">
       <thead>
@@ -36,39 +45,38 @@
       <tbody>
         <tr>
           <td>CPAN</td>
-          <td><tt>!c aliased</tt></td>
+          <td><tt>!cpan aliased</tt></td>
         </tr>
         <tr>
           <td>Flickr CC/Commercial</td>
-          <td><tt>!f paris</tt></td>
+          <td><tt>!flickrcc paris</tt></td>
         </tr>
         <tr>
           <td>Google search</td>
-          <td><tt>!g paris</tt></td>
+          <td><tt>!google paris</tt></td>
         </tr>
         <tr>
           <td>Google news</td>
-          <td><tt>!n paris</tt></td>
+          <td><tt>!news paris</tt></td>
         </tr>
         <tr>
           <td>MetaCPAN</td>
-          <td><tt>!m aliased</tt></td>
+          <td><tt>!metacpan aliased</tt></td>
         </tr>
         <tr>
           <td>Personal blog search</td>
-          <td><tt>!p economics</tt></td>
+          <td><tt>!publius economics</tt></td>
         </tr>
         <tr>
           <td>Wolfram Alpha</td>
-          <td><tt>!w what is the sound of one hand clapping</tt></td>
+          <td><tt>!wolframalpha what is the sound of one hand clapping</tt></td>
         </tr>
         <tr>
           <td>Youtube</td>
-          <td><tt>!w michael franti hole in the bucket</tt></td>
+          <td><tt>!youtube michael franti hole in the bucket</tt></td>
         </tr>
       </tbody>
     </table>
     <p>Searches not matching desired prefix fall back to <a href="http://www.duckduckgo.com/">duckduckgo.com</a></p>
-    <script>personalSearch('#searchbox');</script>
   </body>
 </html>
