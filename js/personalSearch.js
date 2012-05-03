@@ -43,6 +43,14 @@ var personalSearch = function(searchId,searchBoxId) {
             url  : "http://search.cpan.org/search?query={0}&mode=all",
             desc : "search.cpan.org"
         },
+        cnn : {
+            url  : "http://edition.cnn.com/search/?query={0}",
+            desc : "CNN News"
+        },
+        bbc : {
+            url  : "http://www.bbc.co.uk/search/?q={0}",
+            desc : "BBC Website"
+        },
         flickrcc : {
             url  : "http://www.flickr.com/search/?q={0}&l=comm&ss=2&ct=6&mt=all&w=all&adv=1",
             desc : "Flickr CC Commercial photos"
@@ -62,6 +70,10 @@ var personalSearch = function(searchId,searchBoxId) {
         publius : {
             url  : "https://www.google.com/search?hl=en&q=site%3Apublius-ovidius.livejournal.com+{0}",
             desc : "My old personal blog"
+        },
+        wikipedia : {
+            url  : "http://en.wikipedia.org/wiki/Special:Search?search={0}",
+            desc : "Wikipedia"
         },
         wolframalpha : {
             url  : "http://www.wolframalpha.com/input/?i={0}",
