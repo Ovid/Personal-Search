@@ -67,6 +67,10 @@ var personalSearch = function(searchId,searchBoxId) {
             url  : "http://www.flickr.com/search/?q={0}&l=comm&ss=2&ct=6&mt=all&w=all&adv=1",
             desc : "Flickr CC Commercial photos"
         },
+        gutenberg : {
+            url  : "http://www.gutenberg.org/ebooks/search/?query={0}",
+            desc : "Gutenberg Book project"
+        },
         google : {
             url  : "http://www.google.com/search?btnG=1&pws=0&q={0}",
             desc : "Google"
