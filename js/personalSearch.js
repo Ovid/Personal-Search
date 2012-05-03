@@ -39,14 +39,38 @@ String.prototype.redirectFormat = function() {
 
 var personalSearch = function(searchId) {
     var redirects = {
-        cpan         : "http://search.cpan.org/search?query={0}&mode=all",
-        flickrcc     : "http://www.flickr.com/search/?q={0}&l=comm&ss=2&ct=6&mt=all&w=all&adv=1",
-        google       : "http://www.google.com/search?btnG=1&pws=0&q={0}",
-        metacpan     : "https://metacpan.org/search?q={0}",
-        news         : "http://www.google.com/search?btnG=1&tbm=nws&pws=0&q={0}",
-        publius      : "https://www.google.com/search?hl=en&q=site%3Apublius-ovidius.livejournal.com+{0}",
-        wolframalpha : "http://www.wolframalpha.com/input/?i={0}",
-        youtube      : "http://www.youtube.com/results?search_query={0}"
+        cpan : {
+            url  : "http://search.cpan.org/search?query={0}&mode=all",
+            desc : "search.cpan.org"
+        },
+        flickrcc : {
+            url  : "http://www.flickr.com/search/?q={0}&l=comm&ss=2&ct=6&mt=all&w=all&adv=1",
+            desc : "Flickr CC Commercial photos"
+        },
+        google : {
+            url  : "http://www.google.com/search?btnG=1&pws=0&q={0}",
+            desc : "Google"
+        },
+        metacpan : {
+            url  : "https://metacpan.org/search?q={0}",
+            desc : 'metacpan'
+        },
+        news : {
+            url  : "http://www.google.com/search?btnG=1&tbm=nws&pws=0&q={0}",
+            desc : "Google news"
+        },
+        publius : {
+            url  : "https://www.google.com/search?hl=en&q=site%3Apublius-ovidius.livejournal.com+{0}",
+            desc : "My old personal blog"
+        },
+        wolframalpha : {
+            url  : "http://www.wolframalpha.com/input/?i={0}",
+            desc : "Wolframalpha.com"
+        },
+        youtube : {
+            url  : "http://www.youtube.com/results?search_query={0}",
+            desc : "Youtube"
+        }
     };
 
     $(searchId).submit(function() {
@@ -57,7 +81,7 @@ var personalSearch = function(searchId) {
         if (matchSearch) {
             if ( redirect = redirects[matchSearch[1]] ) {
                 setTimeout(function() {
-                    window.location = redirect.redirectFormat(encodeURIComponent(matchSearch[2]));
+                    window.location = redirect.url.redirectFormat(encodeURIComponent(matchSearch[2]));
                 }, 1 );
                 return false;
             }
