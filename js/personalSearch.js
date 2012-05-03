@@ -39,6 +39,10 @@ String.prototype.redirectFormat = function() {
 
 var personalSearch = function(searchId,searchBoxId) {
     var redirects = {
+        aljazeera : {
+            url  : "http://www.aljazeera.com/Services/Search/?q={0}",
+            desc : "Al Jazeera"
+        },
         cpan : {
             url  : "http://search.cpan.org/search?query={0}&mode=all",
             desc : "search.cpan.org"
@@ -46,6 +50,14 @@ var personalSearch = function(searchId,searchBoxId) {
         cnn : {
             url  : "http://edition.cnn.com/search/?query={0}",
             desc : "CNN News"
+        },
+        cnet : {
+            url  : "http://news.cnet.com/1770-5_3-0.html?query={0}&tag=srch&searchtype=news",
+            desc : "c|net news"
+        },
+        books : {
+            url  : "http://www.amazon.com/s/ref=nb_sb_noss_1?field-keywords={0}&url=search-alias%3Dstripbooks&tag=overse-20",
+            desc : "Amazon.com Book search"
         },
         bbc : {
             url  : "http://www.bbc.co.uk/search/?q={0}",
@@ -70,6 +82,10 @@ var personalSearch = function(searchId,searchBoxId) {
         publius : {
             url  : "https://www.google.com/search?hl=en&q=site%3Apublius-ovidius.livejournal.com+{0}",
             desc : "My old personal blog"
+        },
+        recipe : {
+            url  : "http://www.cooks.com/rec/search?q={0}",
+            desc : "Cooks.com"
         },
         wikipedia : {
             url  : "http://en.wikipedia.org/wiki/Special:Search?search={0}",
