@@ -126,3 +126,11 @@ body
     background: #fff;
     outline: none;
 }
+
+a:link {
+    color: #666;
+    text-decoration: none;
+}
+a:visited {
+    color: #777;
+}

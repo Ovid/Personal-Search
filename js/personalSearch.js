@@ -161,29 +161,16 @@ var personalSearch = function(searchId,searchBoxId) {
     for (var i in keys) {
         var rowCount = table.rows.length;
         var row      = table.insertRow(rowCount);
+        var redirect = redirects[keys[i]];
 
         var cell1 = row.insertCell(0);
-        cell1.innerHTML = redirects[ keys[i] ].desc;
+        cell1.innerHTML = redirect.desc;
  
         var cell2 = row.insertCell(1);
-        cell2.innerHTML = '<tt>!' + keys[i] + ' ' + redirects[ keys[i] ].example + '</tt>';
+        var href  = redirect.url.redirectFormat(encodeURIComponent(redirect.example));
+        cell2.innerHTML = '<tt><a href="' + href + '">!' + keys[i] + ' ' + redirect.example + '</a></tt>';
     }
 
-
-// $.ui.autocomplete.prototype._renderMenu = function(ul, items) {
-//   var self = this;
-//   ul.append("<table><tbody></tbody></table>");
-//   $.each( items, function( index, item ) {
-//     self._renderItem( ul.find("table tbody"), item );
-//   });
-// };
-// 
-// $.ui.autocomplete.prototype._renderItem = function(table, item) {
-//   return $( "<tr></tr>" )
-//     .data( "item.autocomplete", item )
-//     .append( "<td>"+item+"</td>"+"<td>"+item+"</td>" )
-//     .appendTo( table );
-// };
 
     var keys = [];
     for (var key in redirects) keys.push('!' + key);
