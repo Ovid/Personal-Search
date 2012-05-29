@@ -149,7 +149,14 @@ var personalSearch = function(searchId,searchBoxId) {
             keys.push(key);
         }
     }
-    keys.sort();
+
+    function byDesc(a,b) {
+        var aDesc = redirects[a].desc.toLowerCase();
+        var bDesc = redirects[b].desc.toLowerCase();
+        return (aDesc<bDesc) ? -1 : (aDesc>bDesc) ? 1 : 0;
+    }
+
+    keys.sort(byDesc);
 
     for (var i in keys) {
         var rowCount = table.rows.length;
