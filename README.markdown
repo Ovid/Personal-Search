@@ -8,7 +8,7 @@ Point your browser at search.html and go.
 
 # PREVIEW
 
-![personal search preview](http://i.imgur.com/Yjszp.png)
+![personal search preview](http://i.imgur.com/cvymo.png)
 
 # DESCRIPTION
 
