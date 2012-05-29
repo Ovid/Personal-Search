@@ -111,6 +111,11 @@ var personalSearch = function(searchId,searchBoxId) {
             desc    : "Wikipedia",
             example : "Palestine"
         },
+        commons : {
+            url     : "http://commons.wikimedia.org/wiki/Special:Search?search={0}",
+            desc    : "Wikimedia Commons",
+            example : "Anne Frank"
+        },
         wolframalpha : {
             url     : "http://www.wolframalpha.com/input/?i={0}",
             desc    : "Wolframalpha.com",
