@@ -1,11 +1,4 @@
 /* http://www.red-team-design.com/how-to-create-a-cool-and-usable-css3-search-box */
-body
-{
-    background: #f1f1f1;
-    text-align: center;
-    font: normal 13px 'trebuchet MS', arial, helvetica;
-}
-
 #searchbox
 {
     background: #aaa;
@@ -124,12 +117,4 @@ body
     border-color: #8badb4;
     background: #fff;
     outline: none;
-}
-
-a:link {
-    color: #666;
-    text-decoration: none;
-}
-a:visited {
-    color: #777;
 }

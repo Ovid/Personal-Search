@@ -1,0 +1,28 @@
+body
+{
+    background: #ddd;
+    text-align: center;
+    font: normal 13px 'trebuchet MS', arial, helvetica;
+}
+
+fieldset {
+    text-align:            left;
+    width:                 70%;    
+    margin-left:           15%; 
+    margin-right:          15%;
+    border: solid          #ccc 1px;
+    -moz-border-radius:    6px;
+    -webkit-border-radius: 6px;
+    border-radius:         6px;
+    -webkit-box-shadow:    0 1px 1px #ccc; 
+    -moz-box-shadow:       0 1px 1px #ccc; 
+    box-shadow:            0 1px 1px #ccc;         
+}
+
+a:link {
+    color: #666;
+    text-decoration: none;
+}
+a:visited {
+    color: #777;
+}
