@@ -31,52 +31,21 @@
           placeholder="Enter search text"
           autocomplete="off">
         <input id="submit" type="submit" value="Search">
-        <script>personalSearch('#searchbox','#search');</script>
       </form>
     </div>
     <p>Try these searches:</p>
-    <table class="bordered">
-      <thead>
-        <tr>
-          <th>Description</th>
-          <th>Search</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>CPAN</td>
-          <td><tt>!cpan aliased</tt></td>
-        </tr>
-        <tr>
-          <td>Flickr CC/Commercial</td>
-          <td><tt>!flickrcc paris</tt></td>
-        </tr>
-        <tr>
-          <td>Google search</td>
-          <td><tt>!google paris</tt></td>
-        </tr>
-        <tr>
-          <td>Google news</td>
-          <td><tt>!news paris</tt></td>
-        </tr>
-        <tr>
-          <td>MetaCPAN</td>
-          <td><tt>!metacpan aliased</tt></td>
-        </tr>
-        <tr>
-          <td>Personal blog search</td>
-          <td><tt>!publius economics</tt></td>
-        </tr>
-        <tr>
-          <td>Wolfram Alpha</td>
-          <td><tt>!wolframalpha what is the sound of one hand clapping</tt></td>
-        </tr>
-        <tr>
-          <td>Youtube</td>
-          <td><tt>!youtube michael franti hole in the bucket</tt></td>
-        </tr>
-      </tbody>
-    </table>
+    <div style="height:200px; overflow:auto">
+      <table id="urls" class="bordered">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Search</th>
+          </tr>
+        </thead>
+        <tbody/>
+      </table>
+    </div>
+    <script>personalSearch('#searchbox','#search');</script>
     <p>Searches not matching desired prefix fall back to <a href="http://www.duckduckgo.com/">duckduckgo.com</a></p>
   </body>
 </html>
