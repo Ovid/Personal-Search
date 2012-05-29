@@ -8,7 +8,7 @@ Point your browser at search.html and go.
 
 # PREVIEW
 
-![personal search preview](http://farm8.staticflickr.com/7202/7131102101_f9c0480e85_d.jpg)
+![personal search preview](http://i.imgur.com/Yjszp.png)
 
 # DESCRIPTION
 
