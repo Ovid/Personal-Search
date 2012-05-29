@@ -12,24 +12,21 @@
     <script src="js/personalSearch.js"></script>
   </head>
   <body>
-    <p>This is an experiment with HTML5 and JavaScript. If you can't/won't
-    support either, it won't be very interesting to you.</p>
+    <fieldset>
+      <legend>Description</legend>
+      <p>This is an experiment with HTML5 and JavaScript. If you can't/won't
+      support either, it won't be very interesting to you.</p>
 
-    <p>If the first character you type in the search box is a bang
-    (<tt>!</tt>), then an autocomplete dropdown with different searches wil
-    show up as you start typing. Hiting <tt>tab</tt> will complete the search
-    type and then you just type the rest of your search and hit
-    <tt>enter</tt>.</p>
+      <p>If the first character you type in the search box is a bang
+      (<tt>!</tt>), then an autocomplete dropdown with different searches wil
+      show up as you start typing. Hiting <tt>tab</tt> will complete the search
+      type and then you just type the rest of your search and hit
+      <tt>enter</tt>.</p>
+    </fieldset>
 
     <div class="ui-widget">
       <form id="searchbox" method="GET" action="http://duckduckgo.com/">
-        <input
-          id="search"
-          type="text"
-          name="q"
-          autofocus="1"
-          placeholder="Enter search text"
-          autocomplete="off">
+        <input id="search" type="text" name="q" autofocus="1" placeholder="Enter search text" autocomplete="off">
         <input id="submit" type="submit" value="Search">
       </form>
     </div>
