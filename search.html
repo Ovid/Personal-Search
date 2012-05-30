@@ -13,26 +13,14 @@
     <script src="js/personalSearch.js"></script>
   </head>
   <body>
-    <fieldset>
-      <legend>Personal Search</legend>
-      <p>This is an experiment with HTML5 and JavaScript. If you can't/won't
-      support either, it won't be very interesting to you.</p>
-
-      <p>If the first character you type in the search box is a bang
-      (<tt>!</tt>), then an autocomplete dropdown with different searches wil
-      show up as you start typing. Hiting <tt>tab</tt> will complete the
-      search type (or you can select with your mouse or just type it out) and
-      then you just type the rest of your search and hit <tt>enter</tt>.</p>
-    </fieldset>
-
     <div class="ui-widget">
       <form id="searchbox" method="GET" action="http://duckduckgo.com/">
         <input id="search" type="text" name="q" autofocus="1" placeholder="Enter search text" autocomplete="off">
         <input id="submit" type="submit" value="Search">
       </form>
     </div>
-    <p>Try these searches:</p>
-    <div style="height:200px; overflow:auto">
+    <a href="#" id="url-table">Search examples (click to open/close)</a>
+    <div id="url-table-content" style="height:200px; overflow:auto; display: none">
       <table id="urls" class="bordered">
         <thead>
           <tr>
@@ -44,6 +32,39 @@
       </table>
     </div>
     <script>personalSearch('#searchbox','#search');</script>
-    <p>Searches not matching desired prefix fall back to <a href="http://www.duckduckgo.com/">duckduckgo.com</a></p>
+    <script type="text/javascript">
+    $('#url-table').click(function() {
+        $('#url-table-content').slideToggle('fast', function() {
+            // ok
+        });
+        return( false );
+    });
+    </script>
+    <br/>
+    <br/>
+    <a href="#" id="search-instructions">Instructions</a>
+    <div id="search-instructions-content" style="display: none">
+      <fieldset>
+        <legend>Personal Search</legend>
+          <p>This is an experiment with HTML5 and JavaScript. If you can't/won't
+          support either, it won't be very interesting to you.</p>
+
+          <p>If the first character you type in the search box is a bang
+          (<tt>!</tt>), then an autocomplete dropdown with different searches wil
+          show up as you start typing. Hiting <tt>tab</tt> will complete the
+          search type (or you can select with your mouse or just type it out) and
+          then you just type the rest of your search and hit <tt>enter</tt>.</p>
+
+          <p>Searches not matching desired prefix fall back to <a href="http://www.duckduckgo.com/">duckduckgo.com</a></p>
+      </fieldset>
+    </div>
+    <script type="text/javascript">
+    $('#search-instructions').click(function() {
+        $('#search-instructions-content').slideToggle('fast', function() {
+            // ok
+        });
+        return( false );
+    });
+    </script>
   </body>
 </html>
