@@ -91,6 +91,11 @@ var personalSearch = function(searchId,searchBoxId) {
             desc    : "Google news",
             example : "Palestine"
         },
+        overseas : {
+            url     : "https://www.google.com/search?hl=en&q=site%3Aoverseas-exile.com+{0}",
+            desc    : "Overseas Exile",
+            example : "fatca"
+        },
         publius : {
             url     : "https://www.google.com/search?hl=en&q=site%3Apublius-ovidius.livejournal.com+{0}",
             desc    : "My old personal blog",
