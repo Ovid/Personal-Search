@@ -140,7 +140,7 @@ var personalSearch = function(searchId,searchBoxId) {
         if (matchSearch) {
             if ( redirect = redirects[matchSearch[1]] ) {
                 setTimeout(function() {
-                    window.location = redirect.url.redirectFormat(encodeURIComponent(matchSearch[2]));
+                    window.open(redirect.url.redirectFormat(encodeURIComponent(matchSearch[2])), matchSearch[1]);
                 }, 1 );
                 return false;
             }
@@ -178,7 +178,7 @@ var personalSearch = function(searchId,searchBoxId) {
  
         var cell2 = row.insertCell(1);
         var href  = redirect.url.redirectFormat(encodeURIComponent(redirect.example));
-        cell2.innerHTML = '<tt><a href="' + href + '">!' + keys[i] + ' ' + redirect.example + '</a></tt>';
+        cell2.innerHTML = '<tt><a href="' + href + '" target="_blank">!' + keys[i] + ' ' + redirect.example + '</a></tt>';
     }
 
 
