@@ -81,6 +81,11 @@ var personalSearch = function(searchId,searchBoxId) {
             desc    : "Google",
             example : "Jimmy Carter Palestine"
         },
+        imdb : {
+            url     : "http://www.imdb.com/find?q={0}",
+            desc    : "IMDB",
+            example : "Casablanca"
+        },
         metacpan : {
             url     : "https://metacpan.org/search?q={0}",
             desc    : 'metacpan',
@@ -135,7 +140,7 @@ var personalSearch = function(searchId,searchBoxId) {
 
     $(searchId).submit(function() {
         var search = $(searchBoxId).val();
-        var reSearch = /^\s*!(\S+)\s+(.*)/;
+        var reSearch = /^(\S+)\s+(.*)/;
         var matchSearch = reSearch.exec(search);
         if (matchSearch) {
             if ( redirect = redirects[matchSearch[1]] ) {
@@ -178,30 +183,41 @@ var personalSearch = function(searchId,searchBoxId) {
  
         var cell2 = row.insertCell(1);
         var href  = redirect.url.redirectFormat(encodeURIComponent(redirect.example));
-        cell2.innerHTML = '<tt><a href="' + href + '" target="_blank">!' + keys[i] + ' ' + redirect.example + '</a></tt>';
+        cell2.innerHTML = '<tt><a href="' + href + '" target="_blank">' + keys[i] + ' ' + redirect.example + '</a></tt>';
     }
 
 
     var keys = [];
-    for (var key in redirects) keys.push('!' + key);
+    for (var key in redirects) keys.push(key);
     keys.sort();
     $(searchBoxId).autocomplete({
-        source: keys,
-        delay: 0,
+        source:      keys,
+        delay:       0,
         selectFirst: true,
-        select: function(event, ui) {
+        select:      function(event, ui) {
             var TABKEY = 9;
             this.value = ui.item.value;
 
             if (event.keyCode == TABKEY) {
                 event.preventDefault();
                 this.value = this.value + " ";
-                $(searchBoxId).focus();
+                this.focus();
             }
 
             return false;
         },
         autoFocus: true,
         minLength: 2
-    });
+    })
+    // entirely optional. Highlights the results in dropdown
+    .data("autocomplete")._renderItem = function (ul, item) {
+        var newText = String(item.value).replace(
+                new RegExp(this.term, "gi"),
+                "<span class='ui-state-highlight'>$&</span>");
+
+        return $("<li></li>")
+            .data("item.autocomplete", item)
+            .append("<a>" + newText + "</a>")
+            .appendTo(ul);
+    };
 }
