@@ -61,6 +61,11 @@ var personalSearch = function(searchId,searchBoxId) {
             desc    : "CNN News",
             example : "Astrology"
         },
+        compfight : {
+            url     : "http://compfight.com/search/{0}/1-2-1-1",
+            desc    : "High quality CC commercial on Flickr",
+            example : "chess"
+        },
         cpan : {
             url     : "http://search.cpan.org/search?query={0}&mode=all",
             desc    : "CPAN",
@@ -185,7 +190,6 @@ var personalSearch = function(searchId,searchBoxId) {
         var href  = redirect.url.redirectFormat(encodeURIComponent(redirect.example));
         cell2.innerHTML = '<tt><a href="' + href + '" target="_blank">' + keys[i] + ' ' + redirect.example + '</a></tt>';
     }
-
 
     var keys = [];
     for (var key in redirects) keys.push(key);
