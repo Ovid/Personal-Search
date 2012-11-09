@@ -116,6 +116,11 @@ var personalSearch = function(searchId,searchBoxId) {
             desc    : "Cooks.com",
             example : "hash browns"
         },
+        rottentomatoes : {
+            url     : "http://www.rottentomatoes.com/search/?search={0}&sitesearch=rt",
+            desc    : "Rotten Tomatoes Movie Search",
+            example : "Serenity"
+        },
         songfacts : {
             url     : "http://www.songfacts.com/search.php?q={0}",
             desc    : "songfacts.com",
