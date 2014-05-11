@@ -63,11 +63,17 @@
           <p>For example, typing 'books beginning perl', in the default
           configuration, will search <a
           href="http://www.amazon.com/s/ref=nb_sb_noss_1?field-keywords=beginning%20perl%20curtis%20poe&url=search-alias=stripbooks&tag=overse-20">amazon.com
-          for books matching "beginning perl"</a>. We do not store this
-          information, but Amazon might. You have no guarantee of privacy
-          once you visit a Web site.</p>
+          for books matching "beginning perl"</a>:</p>
 
-          <p>Searches not matching desired prefix fall back to <a href="http://www.duckduckgo.com/">duckduckgo.com</a></p>
+          <form id="searchExamplebox">
+            <input disabled="true" id="searchExample" type="text" value="books beginning perl">
+            <input disabled="true" id="submit" type="submit" value="Search">
+          </form>
+          
+          <p>We do not store this information, but Amazon might. You have no
+          guarantee of privacy once you visit a Web site.</p>
+
+          <p>Searches not matching a known search type will use <a href="http://www.duckduckgo.com/">duckduckgo.com</a></p>
       </fieldset>
     </div>
     <script type="text/javascript">
