@@ -148,6 +148,13 @@ var personalSearch = function(searchId,searchBoxId) {
     };
 
     var searches = defaultSearches;
+    if (Modernizr.localstorage) {
+        // save to localstorage if it's not there
+        // else load from localstorage
+    }
+    else {
+        alert("To ensure privacy, we store your search results in local storage. Please update your browser to a modern version that supports local storage. Falling back to default searches.");
+    }
 
     $(searchId).submit(function() {
         var search = $(searchBoxId).val();
