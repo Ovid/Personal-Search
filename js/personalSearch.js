@@ -25,7 +25,7 @@ $(document).ready(function() {
     }
 });
 
-String.prototype.redirectFormat = function() {
+String.prototype.searchFormat = function() {
     var args = arguments;
     return this.replace(/{(\d+)}/g, function(match, number) {
         return typeof args[number] != 'undefined'
@@ -35,7 +35,7 @@ String.prototype.redirectFormat = function() {
 };
 
 var personalSearch = function(searchId,searchBoxId) {
-    var redirects = {
+    var searches = {
         aljazeera : {
             url     : "http://www.aljazeera.com/Services/Search/?q={0}",
             desc    : "Al Jazeera",
@@ -153,9 +153,9 @@ var personalSearch = function(searchId,searchBoxId) {
         var reSearch = /^(\S+)\s+(.*)/;
         var matchSearch = reSearch.exec(search);
         if (matchSearch) {
-            if ( redirect = redirects[matchSearch[1]] ) {
+            if ( search = searches[matchSearch[1]] ) {
                 setTimeout(function() {
-                    window.open(redirect.url.redirectFormat(encodeURIComponent(matchSearch[2])), matchSearch[1]);
+                    window.open(search.url.searchFormat(encodeURIComponent(matchSearch[2])), matchSearch[1]);
                 }, 1 );
                 return false;
             }
@@ -169,15 +169,15 @@ var personalSearch = function(searchId,searchBoxId) {
 
 
     var keys = [];
-    for (var key in redirects) {
-        if ( redirects.hasOwnProperty(key) ) {
+    for (var key in searches) {
+        if ( searches.hasOwnProperty(key) ) {
             keys.push(key);
         }
     }
 
     function byDesc(a,b) {
-        var aDesc = redirects[a].desc.toLowerCase();
-        var bDesc = redirects[b].desc.toLowerCase();
+        var aDesc = searches[a].desc.toLowerCase();
+        var bDesc = searches[b].desc.toLowerCase();
         return (aDesc<bDesc) ? -1 : (aDesc>bDesc) ? 1 : 0;
     }
 
@@ -186,18 +186,18 @@ var personalSearch = function(searchId,searchBoxId) {
     for (var i in keys) {
         var rowCount = table.rows.length;
         var row      = table.insertRow(rowCount);
-        var redirect = redirects[keys[i]];
+        var search   = searches[keys[i]];
 
         var cell1 = row.insertCell(0);
-        cell1.innerHTML = redirect.desc;
+        cell1.innerHTML = search.desc;
  
         var cell2 = row.insertCell(1);
-        var href  = redirect.url.redirectFormat(encodeURIComponent(redirect.example));
-        cell2.innerHTML = '<tt><a href="' + href + '" target="_blank">' + keys[i] + ' ' + redirect.example + '</a></tt>';
+        var href  = search.url.searchFormat(encodeURIComponent(search.example));
+        cell2.innerHTML = '<tt><a href="' + href + '" target="_blank">' + keys[i] + ' ' + search.example + '</a></tt>';
     }
 
     var keys = [];
-    for (var key in redirects) keys.push(key);
+    for (var key in searches) keys.push(key);
     keys.sort();
     $(searchBoxId).autocomplete({
         source:      keys,
