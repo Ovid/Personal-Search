@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Custom searches, just the way I like 'em.</title>
+    <title>Personal, private search.</title>
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/search.css" />
@@ -13,6 +13,7 @@
     <script src="js/personalSearch.js"></script>
   </head>
   <body>
+    <h2>Personal, private search.</h2>
     <div class="ui-widget">
       <form target="_blank" id="searchbox" method="GET" action="http://duckduckgo.com/">
         <input id="search" type="text" name="q" autofocus="1" placeholder="Enter search text" autocomplete="off">
@@ -46,14 +47,18 @@
     <div id="search-instructions-content" style="display: none">
       <fieldset>
         <legend>Personal Search</legend>
-          <p>This is an experiment with HTML5 and JavaScript. If you can't/won't
-          support either, it won't be very interesting to you.</p>
+          <p>This is an experiment in creating an open source, private,
+          personalizable search tool. Because it stores nothing about your
+          searches and all code is freely available on <a
+          href="https://github.com/Ovid/Personal-Search">github</a>, it's
+          trivial to inspect it and verify that there is no data sent.</p>
 
-          <p>If the first character you type in the search box is a bang
-          (<tt>!</tt>), then an autocomplete dropdown with different searches wil
-          show up as you start typing. Hiting <tt>tab</tt> will complete the
-          search type (or you can select with your mouse or just type it out) and
-          then you just type the rest of your search and hit <tt>enter</tt>.</p>
+          <p>The first word you type into the search box is the <em>search
+          type</em> and that controls which Web site you'll be searching on.
+          Any successive words are the search term you'll be using.  Hitting
+          <tt>tab</tt> will complete the search type (or you can select with
+          your mouse or just type it out) and then you just type the rest of
+          your search and hit <tt>enter</tt>.</p>
 
           <p>Searches not matching desired prefix fall back to <a href="http://www.duckduckgo.com/">duckduckgo.com</a></p>
       </fieldset>
