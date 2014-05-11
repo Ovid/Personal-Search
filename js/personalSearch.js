@@ -1,7 +1,6 @@
 $(document).ready(function() {
     if (!Modernizr.input.placeholder)
     {
-
         var placeholderText = $('#search').attr('placeholder');
 
         $('#search').attr('value',placeholderText);
@@ -35,7 +34,7 @@ String.prototype.searchFormat = function() {
 };
 
 var personalSearch = function(searchId,searchBoxId) {
-    var searches = {
+    var defaultSearches = {
         aljazeera : {
             url     : "http://www.aljazeera.com/Services/Search/?q={0}",
             desc    : "Al Jazeera",
@@ -147,6 +146,8 @@ var personalSearch = function(searchId,searchBoxId) {
             example : "Michael Franti Hole In the Bucket"
         }
     };
+
+    var searches = defaultSearches;
 
     $(searchId).submit(function() {
         var search = $(searchBoxId).val();
