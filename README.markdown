@@ -4,7 +4,10 @@ Personal-Search - Search what you really want to search
 
 # SYNOPSIS
 
-Point your browser at search.html and go.
+Point your browser at index.html and go.
+
+If you don't want to download it, [check it out
+live](http://ovid.github.io/Personal-Search/).
 
 # PREVIEW
 
