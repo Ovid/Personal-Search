@@ -15,11 +15,15 @@ live](http://ovid.github.io/Personal-Search/).
 
 # DESCRIPTION
 
-This is a way of helping me learn HTML5, CSS and Javascript better. It's just
-a shorthand for several common searches I like to do, without having to go to
-the pages and constantly clicking "advanced search". Further, it should work
-regardless of where I am and which browser I am using. Long-term plans involve
-creating custom search bookmarks.
+People often search the same sites over and over. This tool allows you to
+create your own, personal searches of just those sites you like to search. Do
+you search Amazon.com for books? Type in `books beginning perl` and that will
+search Amazon for [my Beginning Perl
+book](http://www.amazon.com/s/ref=nb_sb_noss_1?field-keywords=beginning%20perl&url=search-alias%3Dstripbooks&tag=overse-20).
+
+As a side effect, because no data is sent to a server other than the one
+you're searching on, no search engine could possibly track that search, though
+the site you land on might.
 
 # HTML5
 
@@ -28,8 +32,7 @@ using HTML5 now, though I do try to degrade gracefully.
 
 # ALPHA
 
-This is only a proof of concept. In fact, it's fair to say that this code
-sucks.
+This is only a proof of concept.
 
 # AUTHOR
 
