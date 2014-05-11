@@ -84,5 +84,59 @@
         return( false );
     });
     </script>
+    <br />
+    <br />
+    <a href="#" id="privacy">More privacy</a>
+    <div id="privacy-content" style="display: none">
+      <fieldset>
+        <legend>Getting More Privacy</legend>
+
+          <dl>
+          <dt><strong>Private Browsing</strong></dt>
+          <dd>
+          Enable private browsing. Most browsers have a <a
+          href="http://en.wikipedia.org/wiki/Private_browsing">private
+          browsing</a> mode. In this mode, your history will not be saved and
+          cookies outside of the private browsing session will not be
+          used. However, be aware that <a
+          href="http://www.darkreading.com/risk-management/browser-fingerprinting-9-facts/d/d-id/1112056?">browser
+          fingerprinting</a> and other technologies still have the potential
+          to track you.<dd>
+
+          <dt><strong>Tor</strong></dt>
+          <dd>
+          Another option is to use the <a
+          href="https://www.torproject.org/">Tor network</a>. Tor is a way of
+          encrypting all traffic between you and a server and it makes it
+          very, very hard to find out who you are. If used correctly, it can
+          defeat browser fingerprinting, too.<dd>
+
+          <dt><strong>Use a Better Browser</strong></dt>
+          <dd>
+          Some browsers, such as Chrome, are reported to track user information to better
+          target users with ads. Others, such as Internet Explorer, are
+          popular attack vectors for Hackers. Consider using <a
+          href="http://www.mozilla.org/firefox/">Firefox</a> or other browser
+          after you've researched it.<dd>
+
+          <dt><strong>Electronic Frontier Foundation</strong></dt>
+          <dd>
+          Learn about the <a href="https://www.eff.org/">Electronic Frontier
+          Foundation</a> (EFF). Think "ACLU for the 'net". In particular, look
+          at their <a href="https://www.eff.org/https-everywhere">HTTPS
+          Everywhere</a> extension for whatever browser you're using.<dd>
+          </dl>
+
+          </ul>
+      </fieldset>
+    </div>
+    <script type="text/javascript">
+    $('#privacy').click(function() {
+        $('#privacy-content').slideToggle('fast', function() {
+            // ok
+        });
+        return( false );
+    });
+    </script>
   </body>
 </html>
