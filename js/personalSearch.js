@@ -49,7 +49,7 @@ var personalSearch = function(searchId,searchBoxId) {
         books : {
             url     : "http://www.amazon.com/s/ref=nb_sb_noss_1?field-keywords={0}&url=search-alias%3Dstripbooks&tag=overse-20",
             desc    : "Amazon.com Book search",
-            example : "Perl Hacks"
+            example : "Beginning Perl Curtis poe"
         },
         cnet : {
             url     : "http://news.cnet.com/1770-5_3-0.html?query={0}&tag=srch&searchtype=news",
@@ -69,7 +69,7 @@ var personalSearch = function(searchId,searchBoxId) {
         cpan : {
             url     : "http://search.cpan.org/search?query={0}&mode=all",
             desc    : "CPAN",
-            example : "aliased"
+            example : "Test::Class::Moose"
         },
         flickrcc : {
             url     : "http://www.flickr.com/search/?q={0}&l=comm&ss=2&ct=6&mt=all&w=all&adv=1",
