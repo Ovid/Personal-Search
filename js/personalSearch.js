@@ -149,8 +149,16 @@ var personalSearch = function(searchId,searchBoxId) {
 
     var searches = defaultSearches;
     if (Modernizr.localstorage) {
-        // save to localstorage if it's not there
-        // else load from localstorage
+        // localStorage.removeItem('personalSearches');
+        var storedSearches = localStorage.getItem('personalSearches');
+        if (storedSearches === null) {
+            alert('saving');
+            localStorage.setItem('personalSearches', JSON.stringify(defaultSearches));
+        }
+        else {
+            alert('loading');
+            searches = JSON.parse(storedSearches);
+        }
     }
     else {
         alert("To ensure privacy, we store your search results in local storage. Please update your browser to a modern version that supports local storage. Falling back to default searches.");
