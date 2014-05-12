@@ -34,6 +34,7 @@ String.prototype.searchFormat = function() {
 };
 
 function PersonalSearchDatabase() {
+    this.databaseName    = 'personalSearches';
     this.defaultSearches = {
         aljazeera : {
             url     : "http://www.aljazeera.com/Services/Search/?q={0}",
@@ -147,15 +148,24 @@ function PersonalSearchDatabase() {
         }
     };
 
-    this.loadSearches = function() {
+    // If we have local storage:
+    //     if searches not in database
+    //         store default searches
+    //         return default searches
+    //     else
+    //         return stored searches
+    // else:
+    //     the user gets the default searches
+    //
+    this.getSearches = function() {
         var searches = this.defaultSearches;
 
         if (Modernizr.localstorage) {
-            // localStorage.removeItem('personalSearches');
-            var storedSearches = localStorage.getItem('personalSearches');
+            // localStorage.removeItem(this.databaseName);
+            var storedSearches = localStorage.getItem(this.databaseName);
             if (storedSearches === null) {
                 // alert('Did not find stored searches. Saving them.');
-                localStorage.setItem('personalSearches', JSON.stringify(defaultSearches));
+                localStorage.setItem(this.databaseName, JSON.stringify(defaultSearches));
             }
             else {
                 // alert('Loading searches from localStorage');
@@ -175,6 +185,12 @@ function PersonalSearch( searchId, searchBoxId, examplesId ) {
     this.examplesId  = examplesId;
     this.database    = new PersonalSearchDatabase();
 
+    // if they value the person entered in the search box matches:
+    //
+    //      *searchtype* search terms
+    //
+    // And 'searchtype' matches a key in the database, we open a new
+    // window/tab pointing at the related URL, with the search terms
     this.doSearch = function(searches) {
         var search      = $('#' + this.searchBoxId).val();
 
@@ -197,6 +213,7 @@ function PersonalSearch( searchId, searchBoxId, examplesId ) {
         }
     };
 
+    // returns a sorted (by description) list of keys from the database
     this.getSearchTypes = function(searches) {
         var keys  = [];
 
@@ -215,6 +232,7 @@ function PersonalSearch( searchId, searchBoxId, examplesId ) {
         return keys;
     };
 
+    // adds one row per search to the examplesId table
     this.populateExamples = function(searches) {
         var keys  = this.getSearchTypes(searches);
         var table = document.getElementById(this.examplesId);
@@ -232,6 +250,7 @@ function PersonalSearch( searchId, searchBoxId, examplesId ) {
         }
     };
 
+    // creates the 'searchtype' autocomplete for the search box
     this.setUpAutocomplete = function(searches) {
         var keys = [];
         for (var key in searches) keys.push(key);
@@ -269,11 +288,13 @@ function PersonalSearch( searchId, searchBoxId, examplesId ) {
         };
     };
 
+    // Creates the search examples, the autocomplete, and searches on submit
     this.setupSearch = function () {
-        var that     = this; // damn it, javascript
-        var searches = this.database.loadSearches();
+        var searches = this.database.getSearches();
         this.populateExamples(searches);
         this.setUpAutocomplete(searches);
+
+        var that     = this; // damn it, javascript
         $('#' + this.searchId).submit(function() {
             return that.doSearch(searches);
         });
