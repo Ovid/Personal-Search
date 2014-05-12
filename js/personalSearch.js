@@ -33,9 +33,10 @@ String.prototype.searchFormat = function() {
     });
 };
 
-var personalSearch = function( searchId, searchBoxId ) {
+var personalSearch = function( searchId, searchBoxId, examplesId ) {
     this.searchId    = searchId;
     this.searchBoxId = searchBoxId;
+    this.examplesId  = examplesId;
 
     this.defaultSearches = {
         aljazeera : {
@@ -173,7 +174,7 @@ var personalSearch = function( searchId, searchBoxId ) {
 
     var that = this; // damn it, javascript
     this.doSearch = function() {
-        var search      = $(that.searchBoxId).val();
+        var search      = $('#' + that.searchBoxId).val();
         var reSearch    = /^(\S+)\s+(.*)/;
         var matchSearch = reSearch.exec(search);
         if (matchSearch) {
@@ -189,27 +190,31 @@ var personalSearch = function( searchId, searchBoxId ) {
         }
     };
 
+    this.getSearchTypes = function() {
+        var keys  = [];
+
+        for (var key in searches) {
+            if ( searches.hasOwnProperty(key) ) {
+                keys.push(key);
+            }
+        }
+
+        // sort the keys by the description
+        keys.sort( function byDesc(a,b) {
+            var aDesc = searches[a].desc.toLowerCase();
+            var bDesc = searches[b].desc.toLowerCase();
+            return (aDesc < bDesc) ? -1 : (aDesc > bDesc) ? 1 : 0;
+        });
+        return keys;
+    };
+
     var searches = this.loadSearches();
 
-    $(this.searchId).submit(this.doSearch);
+    $('#' + this.searchId).submit(this.doSearch);
 
-    var table = document.getElementById("urls");
-    var keys  = [];
+    var keys  = this.getSearchTypes();
 
-    for (var key in searches) {
-        if ( searches.hasOwnProperty(key) ) {
-            keys.push(key);
-        }
-    }
-
-    function byDesc(a,b) {
-        var aDesc = searches[a].desc.toLowerCase();
-        var bDesc = searches[b].desc.toLowerCase();
-        return (aDesc<bDesc) ? -1 : (aDesc>bDesc) ? 1 : 0;
-    }
-
-    keys.sort(byDesc);
-
+    var table = document.getElementById(this.examplesId);
     for (var i in keys) {
         var rowCount = table.rows.length;
         var row      = table.insertRow(rowCount);
@@ -226,7 +231,7 @@ var personalSearch = function( searchId, searchBoxId ) {
     var keys = [];
     for (var key in searches) keys.push(key);
     keys.sort();
-    $(this.searchBoxId).autocomplete({
+    $('#' + this.searchBoxId).autocomplete({
         source:      keys,
         delay:       0,
         selectFirst: true,
