@@ -38,6 +38,8 @@ var personalSearch = function( searchId, searchBoxId, examplesId ) {
     this.searchBoxId = searchBoxId;
     this.examplesId  = examplesId;
 
+    var that         = this; // damn it, javascript
+
     this.defaultSearches = {
         aljazeera : {
             url     : "http://www.aljazeera.com/Services/Search/?q={0}",
@@ -172,7 +174,6 @@ var personalSearch = function( searchId, searchBoxId, examplesId ) {
         return searches;
     };
 
-    var that = this; // damn it, javascript
     this.doSearch = function() {
         var search      = $('#' + that.searchBoxId).val();
         var reSearch    = /^(\S+)\s+(.*)/;
@@ -208,57 +209,65 @@ var personalSearch = function( searchId, searchBoxId, examplesId ) {
         return keys;
     };
 
-    var searches = this.loadSearches();
+    this.populateExamples = function(searches) {
+        var keys  = this.getSearchTypes();
+        var table = document.getElementById(this.examplesId);
+        for (var i in keys) {
+            var rowCount = table.rows.length;
+            var row      = table.insertRow(rowCount);
+            var search   = searches[keys[i]];
 
-    $('#' + this.searchId).submit(this.doSearch);
-
-    var keys  = this.getSearchTypes();
-
-    var table = document.getElementById(this.examplesId);
-    for (var i in keys) {
-        var rowCount = table.rows.length;
-        var row      = table.insertRow(rowCount);
-        var search   = searches[keys[i]];
-
-        var cell1 = row.insertCell(0);
-        cell1.innerHTML = search.desc;
- 
-        var cell2 = row.insertCell(1);
-        var href  = search.url.searchFormat(encodeURIComponent(search.example));
-        cell2.innerHTML = '<tt><a href="' + href + '" target="_blank">' + keys[i] + ' ' + search.example + '</a></tt>';
-    }
-
-    var keys = [];
-    for (var key in searches) keys.push(key);
-    keys.sort();
-    $('#' + this.searchBoxId).autocomplete({
-        source:      keys,
-        delay:       0,
-        selectFirst: true,
-        select:      function(event, ui) {
-            var TABKEY = 9;
-            this.value = ui.item.value;
-
-            if (event.keyCode == TABKEY) {
-                event.preventDefault();
-                this.value = this.value + " ";
-                this.focus();
-            }
-
-            return false;
-        },
-        autoFocus: true,
-        minLength: 2
-    })
-    // entirely optional. Highlights the results in dropdown
-    .data("autocomplete")._renderItem = function (ul, item) {
-        var newText = String(item.value).replace(
-                new RegExp(this.term, "gi"),
-                "<span class='ui-state-highlight'>$&</span>");
-
-        return $("<li></li>")
-            .data("item.autocomplete", item)
-            .append("<a>" + newText + "</a>")
-            .appendTo(ul);
+            var cell1 = row.insertCell(0);
+            cell1.innerHTML = search.desc;
+     
+            var cell2 = row.insertCell(1);
+            var href  = search.url.searchFormat(encodeURIComponent(search.example));
+            cell2.innerHTML = '<tt><a href="' + href + '" target="_blank">' + keys[i] + ' ' + search.example + '</a></tt>';
+        }
     };
+
+    this.setUpAutocomplete = function(searches) {
+        var keys = [];
+        for (var key in searches) keys.push(key);
+        keys.sort();
+        $('#' + this.searchBoxId).autocomplete({
+            source:      keys,
+            delay:       0,
+            selectFirst: true,
+            select:      function(event, ui) {
+                var TABKEY = 9;
+                this.value = ui.item.value;
+
+                if (event.keyCode == TABKEY) {
+                    event.preventDefault();
+                    this.value = this.value + " ";
+                    this.focus();
+                }
+
+                return false;
+            },
+            autoFocus: true,
+            minLength: 2
+        })
+        // entirely optional. Highlights the results in dropdown
+        .data("autocomplete")._renderItem = function (ul, item) {
+            var newText = String(item.value).replace(
+                    new RegExp(this.term, "gi"),
+                    "<span class='ui-state-highlight'>$&</span>");
+
+            return $("<li></li>")
+                .data("item.autocomplete", item)
+                .append("<a>" + newText + "</a>")
+                .appendTo(ul);
+        };
+    };
+
+    //
+    // That was the class definition. Now for the code
+    //
+
+    var searches = this.loadSearches();
+    this.populateExamples(searches);
+    this.setUpAutocomplete(searches);
+    $('#' + this.searchId).submit(this.doSearch);
 }
