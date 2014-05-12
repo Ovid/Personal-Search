@@ -165,7 +165,7 @@ function PersonalSearchDatabase() {
             var storedSearches = localStorage.getItem(this.databaseName);
             if (storedSearches === null) {
                 // alert('Did not find stored searches. Saving them.');
-                localStorage.setItem(this.databaseName, JSON.stringify(defaultSearches));
+                localStorage.setItem(this.databaseName, JSON.stringify(searches));
             }
             else {
                 // alert('Loading searches from localStorage');
