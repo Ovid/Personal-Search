@@ -33,7 +33,7 @@ String.prototype.searchFormat = function() {
     });
 };
 
-var personalSearch = function( searchId, searchBoxId, examplesId ) {
+function PersonalSearch( searchId, searchBoxId, examplesId ) {
     this.searchId    = searchId;
     this.searchBoxId = searchBoxId;
     this.examplesId  = examplesId;
@@ -160,11 +160,11 @@ var personalSearch = function( searchId, searchBoxId, examplesId ) {
             // localStorage.removeItem('personalSearches');
             var storedSearches = localStorage.getItem('personalSearches');
             if (storedSearches === null) {
-                alert('Did not find stored searches. Saving them.');
+                // alert('Did not find stored searches. Saving them.');
                 localStorage.setItem('personalSearches', JSON.stringify(defaultSearches));
             }
             else {
-                alert('Loading searches from localStorage');
+                // alert('Loading searches from localStorage');
                 searches = JSON.parse(storedSearches);
             }
         }
@@ -174,14 +174,19 @@ var personalSearch = function( searchId, searchBoxId, examplesId ) {
         return searches;
     };
 
-    this.doSearch = function() {
-        var search      = $('#' + that.searchBoxId).val();
+    this.doSearch = function(searches) {
+        var search      = $('#' + this.searchBoxId).val();
+
+        // search type, spaces, followed by search term
         var reSearch    = /^(\S+)\s+(.*)/;
         var matchSearch = reSearch.exec(search);
         if (matchSearch) {
-            if ( search = searches[matchSearch[1]] ) {
+            if ( found = searches[matchSearch[1]] ) {
                 setTimeout(function() {
-                    window.open(search.url.searchFormat(encodeURIComponent(matchSearch[2])), matchSearch[1]);
+                    window.open(
+                        found.url.searchFormat( encodeURIComponent(matchSearch[2])),
+                        matchSearch[1]
+                    );
                 }, 1 );
                 return false;
             }
@@ -191,7 +196,7 @@ var personalSearch = function( searchId, searchBoxId, examplesId ) {
         }
     };
 
-    this.getSearchTypes = function() {
+    this.getSearchTypes = function(searches) {
         var keys  = [];
 
         for (var key in searches) {
@@ -210,7 +215,7 @@ var personalSearch = function( searchId, searchBoxId, examplesId ) {
     };
 
     this.populateExamples = function(searches) {
-        var keys  = this.getSearchTypes();
+        var keys  = this.getSearchTypes(searches);
         var table = document.getElementById(this.examplesId);
         for (var i in keys) {
             var rowCount = table.rows.length;
@@ -219,7 +224,7 @@ var personalSearch = function( searchId, searchBoxId, examplesId ) {
 
             var cell1 = row.insertCell(0);
             cell1.innerHTML = search.desc;
-     
+
             var cell2 = row.insertCell(1);
             var href  = search.url.searchFormat(encodeURIComponent(search.example));
             cell2.innerHTML = '<tt><a href="' + href + '" target="_blank">' + keys[i] + ' ' + search.example + '</a></tt>';
@@ -249,6 +254,7 @@ var personalSearch = function( searchId, searchBoxId, examplesId ) {
             autoFocus: true,
             minLength: 2
         })
+
         // entirely optional. Highlights the results in dropdown
         .data("autocomplete")._renderItem = function (ul, item) {
             var newText = String(item.value).replace(
@@ -262,12 +268,12 @@ var personalSearch = function( searchId, searchBoxId, examplesId ) {
         };
     };
 
-    //
-    // That was the class definition. Now for the code
-    //
-
-    var searches = this.loadSearches();
-    this.populateExamples(searches);
-    this.setUpAutocomplete(searches);
-    $('#' + this.searchId).submit(this.doSearch);
+    this.setupSearch = function () {
+        var searches = this.loadSearches();
+        this.populateExamples(searches);
+        this.setUpAutocomplete(searches);
+        $('#' + this.searchId).submit(function() {
+            return that.doSearch(searches);
+        });
+    };
 }

@@ -32,14 +32,15 @@
         <tbody/>
       </table>
     </div>
-    <script>personalSearch('searchbox','search', 'urls');</script>
-    <script type="text/javascript">
-    $('#url-table').click(function() {
-        $('#url-table-content').slideToggle('fast', function() {
-            // ok
+    <script>
+        var personalSearch = new PersonalSearch('searchbox','search', 'urls');
+        personalSearch.setupSearch();
+        $('#url-table').click(function() {
+            $('#url-table-content').slideToggle('fast', function() {
+                // ok
+            });
+            return( false );
         });
-        return( false );
-    });
     </script>
     <br/>
     <br/>
