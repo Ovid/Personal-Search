@@ -33,13 +33,7 @@ String.prototype.searchFormat = function() {
     });
 };
 
-function PersonalSearch( searchId, searchBoxId, examplesId ) {
-    this.searchId    = searchId;
-    this.searchBoxId = searchBoxId;
-    this.examplesId  = examplesId;
-
-    var that         = this; // damn it, javascript
-
+function PersonalSearchDatabase() {
     this.defaultSearches = {
         aljazeera : {
             url     : "http://www.aljazeera.com/Services/Search/?q={0}",
@@ -173,6 +167,13 @@ function PersonalSearch( searchId, searchBoxId, examplesId ) {
         }
         return searches;
     };
+}
+
+function PersonalSearch( searchId, searchBoxId, examplesId ) {
+    this.searchId    = searchId;
+    this.searchBoxId = searchBoxId;
+    this.examplesId  = examplesId;
+    this.database    = new PersonalSearchDatabase();
 
     this.doSearch = function(searches) {
         var search      = $('#' + this.searchBoxId).val();
@@ -269,7 +270,8 @@ function PersonalSearch( searchId, searchBoxId, examplesId ) {
     };
 
     this.setupSearch = function () {
-        var searches = this.loadSearches();
+        var that     = this; // damn it, javascript
+        var searches = this.database.loadSearches();
         this.populateExamples(searches);
         this.setUpAutocomplete(searches);
         $('#' + this.searchId).submit(function() {
