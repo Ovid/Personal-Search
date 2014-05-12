@@ -179,10 +179,10 @@ function PersonalSearchDatabase() {
     };
 }
 
-function PersonalSearch( searchId, searchBoxId, examplesId ) {
-    this.searchId    = searchId;
+function PersonalSearch( searchFormId, searchBoxId, examplesTableId ) {
+    this.searchFormId    = searchFormId;
     this.searchBoxId = searchBoxId;
-    this.examplesId  = examplesId;
+    this.examplesTableId  = examplesTableId;
     this.database    = new PersonalSearchDatabase();
 
     // if they value the person entered in the search box matches:
@@ -232,10 +232,10 @@ function PersonalSearch( searchId, searchBoxId, examplesId ) {
         return keys;
     };
 
-    // adds one row per search to the examplesId table
+    // adds one row per search to the examplesTableId table
     this.populateExamples = function(searches) {
         var keys  = this.getSearchTypes(searches);
-        var table = document.getElementById(this.examplesId);
+        var table = document.getElementById(this.examplesTableId);
         for (var i in keys) {
             var rowCount = table.rows.length;
             var row      = table.insertRow(rowCount);
@@ -295,7 +295,7 @@ function PersonalSearch( searchId, searchBoxId, examplesId ) {
         this.setUpAutocomplete(searches);
 
         var that     = this; // damn it, javascript
-        $('#' + this.searchId).submit(function() {
+        $('#' + this.searchFormId).submit(function() {
             return that.doSearch(searches);
         });
     };
