@@ -33,8 +33,11 @@ String.prototype.searchFormat = function() {
     });
 };
 
-var personalSearch = function(searchId,searchBoxId) {
-    var defaultSearches = {
+var personalSearch = function( searchId, searchBoxId ) {
+    this.searchId    = searchId;
+    this.searchBoxId = searchBoxId;
+
+    this.defaultSearches = {
         aljazeera : {
             url     : "http://www.aljazeera.com/Services/Search/?q={0}",
             desc    : "Al Jazeera",
@@ -147,26 +150,31 @@ var personalSearch = function(searchId,searchBoxId) {
         }
     };
 
-    var searches = defaultSearches;
-    if (Modernizr.localstorage) {
-        // localStorage.removeItem('personalSearches');
-        var storedSearches = localStorage.getItem('personalSearches');
-        if (storedSearches === null) {
-            alert('saving');
-            localStorage.setItem('personalSearches', JSON.stringify(defaultSearches));
+    this.loadSearches = function() {
+        var searches = this.defaultSearches;
+
+        if (Modernizr.localstorage) {
+            // localStorage.removeItem('personalSearches');
+            var storedSearches = localStorage.getItem('personalSearches');
+            if (storedSearches === null) {
+                alert('Did not find stored searches. Saving them.');
+                localStorage.setItem('personalSearches', JSON.stringify(defaultSearches));
+            }
+            else {
+                alert('Loading searches from localStorage');
+                searches = JSON.parse(storedSearches);
+            }
         }
         else {
-            alert('loading');
-            searches = JSON.parse(storedSearches);
+            alert("To ensure privacy, we store your search results in local storage. Please update your browser to a modern version that supports local storage. Falling back to default searches.");
         }
-    }
-    else {
-        alert("To ensure privacy, we store your search results in local storage. Please update your browser to a modern version that supports local storage. Falling back to default searches.");
-    }
+        return searches;
+    };
 
-    $(searchId).submit(function() {
-        var search = $(searchBoxId).val();
-        var reSearch = /^(\S+)\s+(.*)/;
+    var that = this; // damn it, javascript
+    this.doSearch = function() {
+        var search      = $(that.searchBoxId).val();
+        var reSearch    = /^(\S+)\s+(.*)/;
         var matchSearch = reSearch.exec(search);
         if (matchSearch) {
             if ( search = searches[matchSearch[1]] ) {
@@ -179,12 +187,15 @@ var personalSearch = function(searchId,searchBoxId) {
         else {
             return true;
         }
-    });
+    };
 
-    var table    = document.getElementById("urls");
+    var searches = this.loadSearches();
 
+    $(this.searchId).submit(this.doSearch);
 
-    var keys = [];
+    var table = document.getElementById("urls");
+    var keys  = [];
+
     for (var key in searches) {
         if ( searches.hasOwnProperty(key) ) {
             keys.push(key);
@@ -215,7 +226,7 @@ var personalSearch = function(searchId,searchBoxId) {
     var keys = [];
     for (var key in searches) keys.push(key);
     keys.sort();
-    $(searchBoxId).autocomplete({
+    $(this.searchBoxId).autocomplete({
         source:      keys,
         delay:       0,
         selectFirst: true,
